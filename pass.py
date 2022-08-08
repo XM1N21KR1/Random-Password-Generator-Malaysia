@@ -1,7 +1,7 @@
 import random
 import string
 
-print('Selamat Datang Ke Random Password Generator By aminzikryy')
+print('Selamat Datang Ke Random Password Generator By XM1N21KR1')
 length = int(input('\nNak Panjang Berapa Perkataan Password nya? '))
 
 lower = "qwertyuiopasdfghjklzxcvbnm"
