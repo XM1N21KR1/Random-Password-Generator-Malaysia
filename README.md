@@ -1,2 +1,4 @@
 # Random-Password-Generator-Malaysia
-Nothing
+Command :
+cd cd Random-Password-Generator-Malaysia
+python pass.py
