@@ -1,13 +1,26 @@
+import compileall
+import os
 import random
 import string
+import sys
+import time
 
-print('Selamat Datang Ke Random Password Generator By XM1N21KR1')
-length = int(input('\nNak Panjang Berapa Perkataan Password nya? '))
+banner=""" 
+ \033[94m __ _ _ __ ___ (_)_ __ \033[91m ___(_) | ___ __ _   _ _   _ 
+\033[94m / _` | '_ ` _ \| | '_  \033[91m|_  / | |/ / '__| | | | | | |
+\033[94m| (_| | | | | | | | | | \033[91m|/ /| |   <| |  | |_| | |_| |
+\033[94m \__,_|_| |_| |_|_|_| |_\033[91m/___|_|_|\_\_|   \__, |\__, |
+ \033[94m                       \033[91m                |___/ |___/  
+ \033[0m                                                """
+print(banner)
 
-lower = "qwertyuiopasdfghjklzxcvbnm"
-upper = "QWERTYUIOPASDFGHJKLZXCVBNM"
+print('Selamat Datang Ke Random Password Generator By aminzikryy')
+length = int(input('\nNak Berapa Panjang Password nya? '))
+
+lower = "abcdefghijklmnopqrstuvwxyz"
+upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 num = "0123456789"
-symbols = "!@#$%&*"
+symbols = "!@\#$%&?/"
 
 all = lower + upper + num + symbols
 temp = random.sample(all,length)
@@ -20,54 +33,19 @@ from itertools import cycle
 from shutil import get_terminal_size
 from threading import Thread
 from time import sleep
+print("\b")
+print("Loading:")
 
 
-class Loader:
-    def __init__(self, desc="Loading...", end="Done!", timeout=0.1):
-        """
-        A loader-like context manager
+#animation = ["10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"]
+animation = ["\033[92m[■□□□□□□□□□]","[■■□□□□□□□□]", "[■■■□□□□□□□]", "[■■■■□□□□□□]", "[■■■■■□□□□□]", "[■■■■■■□□□□]", "[■■■■■■■□□□]", "[■■■■■■■■□□]", "[■■■■■■■■■□]", "[■■■■■■■■■■]"]
+for i in range(len(animation)):
+    time.sleep(0.2)
+    sys.stdout.write("\r" + animation[i % len(animation)])
+    sys.stdout.flush()
 
-        Args:
-            desc (str, optional): The loader's description. Defaults to "Loading...".
-            end (str, optional): Final print. Defaults to "Done!".
-            timeout (float, optional): Sleep time between prints. Defaults to 0.1.
-        """
-        self.desc = desc
-        self.end = end
-        self.timeout = timeout
-
-        self._thread = Thread(target=self._animate, daemon=True)
-        self.steps = ["⢿", "⣻", "⣽", "⣾", "⣷", "⣯", "⣟", "⡿"]
-        self.done = False
-
-    def start(self):
-        self._thread.start()
-        return self
-
-    def _animate(self):
-        for c in cycle(self.steps):
-            if self.done:
-                break
-            print(f"\r{self.desc} {c}", flush=True, end="")
-            sleep(self.timeout)
-
-    def __enter__(self):
-        self.start()
-
-    def stop(self):
-        self.done = True
-        cols = get_terminal_size((80, 20)).columns
-        print("\r" + " " * cols, end="", flush=True)
-        print(f"\r{self.end}", flush=True)
-
-    def __exit__(self, exc_type, exc_value, tb):
-        
-        self.stop()
-
-
-if __name__ == "__main__":
-    with Loader("hang sabar sat tengah create nii "):
-        for i in range(10):
-            sleep(0.25)
-print('Nah password nye ')
+print("\n")
+print ("\033[0mHere is your password :")
+print("\b")
 print(password)
+print("\b")
